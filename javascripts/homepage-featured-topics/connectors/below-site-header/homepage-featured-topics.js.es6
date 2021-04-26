@@ -49,11 +49,12 @@ export default {
                 }
 
                 if (showBannerHere) {
+
                     document.querySelector("html").classList.add(FEATURED_CLASS);
 
                     component.setProperties({
-                        displayHomepageFeatured: true,
-                        loadingFeatures: true,
+                        displayHomepageFeatured: false,
+                        loadingFeatures: false,
                         displayCategoryList: is_show_category_list
                     });
 
@@ -67,7 +68,7 @@ export default {
 
                             let customTopics = [];
                             let hideCategory = [];
-                            
+
                             if (settings.hide_category != '') hideCategory = $.map(settings.hide_category.split(","), function(value){
                                 return parseInt(value, 10);
                             });
@@ -84,6 +85,11 @@ export default {
                                 document.querySelector("html").classList.remove(FEATURED_CLASS);
                                 component.set("displayHomepageFeatured", false);
                             } else {
+                                component.setProperties({
+                                    displayHomepageFeatured: true,
+                                    loadingFeatures: true,
+                                    displayCategoryList: is_show_category_list
+                                });
                                 // Component customFeaturedTopics
                                 let customFeaturedTopics = [];
                                 customTopics

@@ -53,7 +53,7 @@ export default {
                     document.querySelector("html").classList.add(FEATURED_CLASS);
 
                     component.setProperties({
-                        displayHomepageFeatured: false,
+                        displayHomepageFeatured: true,
                         loadingFeatures: true,
                         displayCategoryList: is_show_category_list
                     });

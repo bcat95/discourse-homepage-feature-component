@@ -67,6 +67,7 @@ export default {
 
                             let customTopics = [];
                             let hideCategory = [];
+                            
                             if (settings.hide_category != '') hideCategory = $.map(settings.hide_category.split(","), function(value){
                                 return parseInt(value, 10);
                             });
@@ -78,32 +79,38 @@ export default {
                                 }
                             });
 
-                            // Component customFeaturedTopics
-                            let customFeaturedTopics = [];
-                            customTopics
-                                .slice(0, 4)
-                                .forEach(topic =>
-                                    customFeaturedTopics.push(Topic.create(topic))
-                                );
-                            component.set("customFeaturedTopics", customFeaturedTopics);
+                            // Check customTopics
+                            if (customTopics.length < 5){
+                                document.querySelector("html").classList.remove(FEATURED_CLASS);
+                                component.set("displayHomepageFeatured", false);
+                            } else {
+                                // Component customFeaturedTopics
+                                let customFeaturedTopics = [];
+                                customTopics
+                                    .slice(0, 4)
+                                    .forEach(topic =>
+                                        customFeaturedTopics.push(Topic.create(topic))
+                                    );
+                                component.set("customFeaturedTopics", customFeaturedTopics);
 
-                            // component customLatestTopicsLeft
-                            let customLatestTopicsLeft = [];
-                            customTopics
-                                .slice(4, 12)
-                                .forEach(topic =>
-                                    customLatestTopicsLeft.push(Topic.create(topic))
-                                );
-                            component.set("customLatestTopicsLeft", customLatestTopicsLeft);
+                                // component customLatestTopicsLeft
+                                let customLatestTopicsLeft = [];
+                                customTopics
+                                    .slice(4, 12)
+                                    .forEach(topic =>
+                                        customLatestTopicsLeft.push(Topic.create(topic))
+                                    );
+                                component.set("customLatestTopicsLeft", customLatestTopicsLeft);
 
-                            // component customLatestTopicsRight
-                            let customLatestTopicsRight = [];
-                            customTopics
-                                .slice(13, 29)
-                                .forEach(topic =>
-                                    customLatestTopicsRight.push(Topic.create(topic))
-                                );
-                            component.set("customLatestTopicsRight", customLatestTopicsRight);
+                                // component customLatestTopicsRight
+                                let customLatestTopicsRight = [];
+                                customTopics
+                                    .slice(13, 29)
+                                    .forEach(topic =>
+                                        customLatestTopicsRight.push(Topic.create(topic))
+                                    );
+                                component.set("customLatestTopicsRight", customLatestTopicsRight);
+                            }
 
                         })
                         .finally(() => component.set("loadingFeatures", false))

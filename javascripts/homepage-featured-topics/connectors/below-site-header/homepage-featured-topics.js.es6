@@ -20,6 +20,7 @@ export default {
 
                 let showBannerHere;
                 var topics_json = settings.featured_json;
+                var is_show_category_list = true;
 
                 if (settings.featured_tag != '') topics_json = `/tags/${settings.featured_tag}.json`;
 
@@ -38,8 +39,7 @@ export default {
                 // Set topics_json
                 if (url.match(/\/c\/.*/) || url.match(/\/tag\/.*/)){
                     // Cat & Tag
-                    component.setProperties({ show_category_list: false });
-
+                    var is_show_category_list = false;
                     var cat_url = url;
                     cat_url = cat_url.split("?");
                     if (cat_url.length > 0 && cat_url[0] != "") {
@@ -53,7 +53,8 @@ export default {
 
                     component.setProperties({
                         displayHomepageFeatured: true,
-                        loadingFeatures: true
+                        loadingFeatures: true,
+                        show_category_list: is_show_category_list
                     });
 
                     const titleElement = document.createElement("h2");

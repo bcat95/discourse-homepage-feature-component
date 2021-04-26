@@ -19,12 +19,31 @@ export default {
                 const home = url === "/" || url.match(/^\/\?/) || url === homeRoute;
 
                 let showBannerHere;
+                var topics_json = settings.featured_json;
+
+                if (settings.featured_tag != '') topics_json = `/tags/${settings.featured_tag}.json`;
+
+                // Set showBannerHere
                 if (settings.show_on === "homepage") {
                     showBannerHere = home;
                 } else if (settings.show_on === "top_menu") {
                     showBannerHere = topMenuRoutes.indexOf(url) > -1 || home;
                 } else {
-                    showBannerHere = url.match(/.*/) && !url.match(/search.*/) && !url.match(/admin.*/);
+                    url = url.split("?");
+                    if (url.length > 0 && url[0] != "") url = url[0];
+                    showBannerHere = (url == "/" || url.match(/\/c\/.*/) || url.match(/\/tag\/.*/));
+                    // showBannerHere = url.match(/.*/) && !url.match(/search.*/) && !url.match(/admin.*/);
+                }
+
+                // Set topics_json
+                if (url.match(/\/c\/.*/) || url.match(/\/tag\/.*/)){
+                    // Cat & Tag
+                    var cat_url = url;
+                    cat_url = cat_url.split("?");
+                    if (cat_url.length > 0 && cat_url[0] != "") {
+                        cat_url = cat_url[0];
+                        topics_json = `${cat_url}.json`;
+                    }
                 }
 
                 if (showBannerHere) {
@@ -38,9 +57,6 @@ export default {
                     const titleElement = document.createElement("h2");
                     titleElement.innerHTML = settings.title_text;
                     component.set("titleElement", titleElement);
-
-                    var topics_json = settings.featured_json;
-                    if (settings.featured_tag != '') topics_json = `/tags/${settings.featured_tag}.json`;
 
                     // Get topics from url
                     ajax(topics_json)

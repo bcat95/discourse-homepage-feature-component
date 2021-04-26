@@ -52,11 +52,11 @@ export default {
 
                     document.querySelector("html").classList.add(FEATURED_CLASS);
 
-                    component.setProperties({
+                    /*component.setProperties({
                         displayHomepageFeatured: true,
                         loadingFeatures: true,
                         displayCategoryList: is_show_category_list
-                    });
+                    });*/
 
                     const titleElement = document.createElement("h2");
                     titleElement.innerHTML = settings.title_text;

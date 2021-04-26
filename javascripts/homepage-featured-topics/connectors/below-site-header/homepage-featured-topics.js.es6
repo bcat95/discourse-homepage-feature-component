@@ -54,7 +54,7 @@ export default {
 
                     component.setProperties({
                         displayHomepageFeatured: false,
-                        loadingFeatures: false,
+                        loadingFeatures: true,
                         displayCategoryList: is_show_category_list
                     });
 

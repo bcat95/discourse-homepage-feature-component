@@ -54,7 +54,7 @@ export default {
                     component.setProperties({
                         displayHomepageFeatured: true,
                         loadingFeatures: true,
-                        show_category_list: is_show_category_list
+                        displayCategoryList: is_show_category_list
                     });
 
                     const titleElement = document.createElement("h2");

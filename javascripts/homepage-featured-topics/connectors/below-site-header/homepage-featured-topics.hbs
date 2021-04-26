@@ -32,7 +32,7 @@
             {{#each customFeaturedTopics as |t|}}
               <div class="featured-topic" data-index="{{@index}}">
                 <div class="featured-topic-image">
-                  <a href="/t/{{t.slug}}">
+                  <a href="/t/{{t.slug}}/{{t.id}}">
                     <img class="featured-topic-thumbnail" 
                         src="{{t.thumbnails.1.url}}"
                         srcset="{{t.thumbnails.0.url}}" 

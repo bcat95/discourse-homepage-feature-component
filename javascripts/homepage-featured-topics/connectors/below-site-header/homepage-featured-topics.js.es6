@@ -38,6 +38,8 @@ export default {
                 // Set topics_json
                 if (url.match(/\/c\/.*/) || url.match(/\/tag\/.*/)){
                     // Cat & Tag
+                    component.setProperties({ show_category_list: false });
+
                     var cat_url = url;
                     cat_url = cat_url.split("?");
                     if (cat_url.length > 0 && cat_url[0] != "") {
